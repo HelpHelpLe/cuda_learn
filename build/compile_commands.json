@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/jiale/Projects/cuda/cuda_learn/build",
+  "command": "/usr/bin/g++ -I/home/jiale/Projects/cuda/cuda_learn/include -g -g -o CMakeFiles/test.dir/src/main.cc.o -c /home/jiale/Projects/cuda/cuda_learn/src/main.cc",
+  "file": "/home/jiale/Projects/cuda/cuda_learn/src/main.cc",
+  "output": "CMakeFiles/test.dir/src/main.cc.o"
+},
+{
+  "directory": "/home/jiale/Projects/cuda/cuda_learn/build",
+  "command": "/usr/bin/nvcc -forward-unknown-to-host-compiler -I/home/jiale/Projects/cuda/cuda_learn/include -g -std=c++17 -g -x cu -c /home/jiale/Projects/cuda/cuda_learn/src/cuda/matrixMul.cu -o CMakeFiles/test.dir/src/cuda/matrixMul.cu.o",
+  "file": "/home/jiale/Projects/cuda/cuda_learn/src/cuda/matrixMul.cu",
+  "output": "CMakeFiles/test.dir/src/cuda/matrixMul.cu.o"
+},
+{
+  "directory": "/home/jiale/Projects/cuda/cuda_learn/build",
+  "command": "/usr/bin/nvcc -forward-unknown-to-host-compiler -I/home/jiale/Projects/cuda/cuda_learn/include -g -std=c++17 -g -x cu -c /home/jiale/Projects/cuda/cuda_learn/src/cuda/showId.cu -o CMakeFiles/test.dir/src/cuda/showId.cu.o",
+  "file": "/home/jiale/Projects/cuda/cuda_learn/src/cuda/showId.cu",
+  "output": "CMakeFiles/test.dir/src/cuda/showId.cu.o"
+}
+]
