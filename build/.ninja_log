@@ -1,5 +1,0 @@
-# ninja log v5
-1	16	1725369083436904799	CMakeFiles/test.dir/src/main.cc.o	9ed2217c3d1ea3bb
-1	446	1725369083865908291	CMakeFiles/test.dir/src/cuda/matrixMul.cu.o	bcb70a3afd7d2124
-1	451	1725369083870908332	CMakeFiles/test.dir/src/cuda/showId.cu.o	7f3d72e2ce921e6b
-451	475	1725369083895908535	/home/jiale/Projects/cuda/cuda_learn/bin/test	45ac17a0bd5d7827

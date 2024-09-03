@@ -1,3 +1,0 @@
-/home/jiale/Projects/cuda/cuda_learn/build/CMakeFiles/test.dir
-/home/jiale/Projects/cuda/cuda_learn/build/CMakeFiles/edit_cache.dir
-/home/jiale/Projects/cuda/cuda_learn/build/CMakeFiles/rebuild_cache.dir
