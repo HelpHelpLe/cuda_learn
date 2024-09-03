@@ -1,9 +1,13 @@
 #include "cuda/matrixMul.cuh"
 #include "cuda/showId.cuh"
+#include "cuda/statsHistogram.cuh"
 
+#include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-int main() {
+void test_dot() {
     int a[N * N], b[N * N], c[N * N];
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -18,12 +22,38 @@ int main() {
         }
         printf("\n");
     }
+}
 
-    // show_id(2, 64);
+void test_show_id() { show_id(2, 64); }
 
-    // printf("Total thread count = 32 * 4 = 128\n");
-    // show_id2(32, 4, 1, 4);
-    // printf("Total thread count = 16 * 8 = 128\n");
-    // show_id2(16, 8, 2, 2);
+void test_show_id2() {
+    printf("Total thread count = 32 * 4 = 128\n");
+    show_id2(32, 4, 1, 4);
+    printf("Total thread count = 16 * 8 = 128\n");
+    show_id2(16, 8, 2, 2);
+}
+
+void test_stats_histogram() {
+    constexpr unsigned int n = 1024;
+    unsigned char hist_data[n];
+    unsigned int bin_data[256];
+    srand((unsigned int)time(NULL));
+    for (int i = 0; i < n; i++) {
+        hist_data[i] = (unsigned char)(rand() % 256);
+    }
+
+    stats_histogram(hist_data, n, bin_data);
+
+    unsigned int sum = 0;
+    for (int i = 0; i < 256; ++i) {
+        sum += bin_data[i];
+        printf("The num of %3d is: %3u\n", i, bin_data[i]);
+    }
+    printf("The total num is: %u\n", sum);
+    assert(sum == n);
+}
+
+int main() {
+    test_stats_histogram();
     return 0;
 }
