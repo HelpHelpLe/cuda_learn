@@ -1,6 +1,8 @@
 #include "cuda/matrixMul.cuh"
 #include "cuda/showId.cuh"
 #include "cuda/statsHistogram.cuh"
+#include "baseSort.h"
+#include "cuda/baseSort.cuh"
 
 #include <assert.h>
 #include <stdio.h>
@@ -53,7 +55,32 @@ void test_stats_histogram() {
     assert(sum == n);
 }
 
+void test_gpu_base_sort() {
+    uint32_t arr[NUM_ELEM];
+
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    for (int i = 0; i < NUM_ELEM; ++i) {
+        arr[i] = rand() % 10000;
+    }
+
+    printf("Random array: ");
+    for (int i = 0; i < NUM_ELEM; ++i) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+
+    gpu_sort(arr, NUM_ELEM);
+
+    printf("Sorted array: ");
+    for (int i = 0; i < NUM_ELEM; ++i) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+}
+
 int main() {
-    test_stats_histogram();
+    test_gpu_base_sort();
+    
     return 0;
 }

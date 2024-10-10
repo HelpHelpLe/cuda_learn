@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.15)
 project(cuda_learn)
 enable_language(CUDA)
 
-add_compile_options(-g)
-
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
