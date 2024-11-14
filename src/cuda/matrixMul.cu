@@ -27,9 +27,9 @@ __global__ void matrix_dot(int *a, int *b, int *c) {
     c[i * N + j] = cache[0];
 }
 
-#define PROCESS_ARRAY(XX)                                                      \
-    XX(a);                                                                     \
-    XX(b);                                                                     \
+#define PROCESS_ARRAY(XX) \
+    XX(a);                \
+    XX(b);                \
     XX(c);
 
 __host__ void dot(int *a, int *b, int *c) {

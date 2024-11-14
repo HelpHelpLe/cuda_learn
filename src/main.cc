@@ -3,6 +3,7 @@
 #include "cuda/statsHistogram.cuh"
 #include "baseSort.h"
 #include "cuda/baseSort.cuh"
+#include "cuda/sample.cuh"
 
 #include <assert.h>
 #include <stdio.h>
@@ -80,7 +81,8 @@ void test_gpu_base_sort() {
 }
 
 int main() {
-    test_gpu_base_sort();
-    
+    // test_stats_histogram();
+    // test_block();
+    check_device();
     return 0;
 }

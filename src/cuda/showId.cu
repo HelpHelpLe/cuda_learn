@@ -1,6 +1,6 @@
-#include "cuda/showId.cuh"
-
 #include <stdio.h>
+
+#include "cuda/showId.cuh"
 
 __global__ void what_is_my_id(unsigned int *const block,
                               unsigned int *const thread,
@@ -15,12 +15,12 @@ __global__ void what_is_my_id(unsigned int *const block,
     calc_thread[thread_idx] = thread_idx;
 }
 
-__global__ void
-what_is_my_id2(unsigned int *const block_x, unsigned int *const block_y,
-               unsigned int *const thread, unsigned int *const calc_thread,
-               unsigned int *const x_thread, unsigned int *const y_thread,
-               unsigned int *const grid_dimx, unsigned int *const block_dimx,
-               unsigned int *const grid_dimy, unsigned int *const block_dimy) {
+__global__ void what_is_my_id2(
+    unsigned int *const block_x, unsigned int *const block_y,
+    unsigned int *const thread, unsigned int *const calc_thread,
+    unsigned int *const x_thread, unsigned int *const y_thread,
+    unsigned int *const grid_dimx, unsigned int *const block_dimx,
+    unsigned int *const grid_dimy, unsigned int *const block_dimy) {
     const unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
     const unsigned int idy = (blockIdx.y * blockDim.y) + threadIdx.y;
     const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
@@ -37,10 +37,10 @@ what_is_my_id2(unsigned int *const block_x, unsigned int *const block_y,
     block_dimy[thread_idx] = blockDim.y;
 }
 
-#define PROCESS_ARRAY(XX)                                                      \
-    XX(block);                                                                 \
-    XX(thread);                                                                \
-    XX(warp);                                                                  \
+#define PROCESS_ARRAY(XX) \
+    XX(block);            \
+    XX(thread);           \
+    XX(warp);             \
     XX(calc_thread);
 
 __host__ void show_id(const unsigned int block_num,
@@ -72,8 +72,8 @@ __host__ void show_id(const unsigned int block_num,
 /**
  * copy gpu data to cpu
  */
-#define XX(array)                                                              \
-    cudaMemcpy(cpu_##array, gpu_##array, ARRAY_SIZE_IN_BYTES,                  \
+#define XX(array)                                             \
+    cudaMemcpy(cpu_##array, gpu_##array, ARRAY_SIZE_IN_BYTES, \
                cudaMemcpyDeviceToHost)
     PROCESS_ARRAY(XX)
 #undef XX
@@ -93,17 +93,17 @@ __host__ void show_id(const unsigned int block_num,
 }
 #undef PROCESS_ARRAY
 
-#define PROCESS_ARRAY(XX)                                                      \
-    XX(block_x);                                                               \
-    XX(block_y);                                                               \
-    XX(thread);                                                                \
-    XX(warp);                                                                  \
-    XX(calc_thread);                                                           \
-    XX(xthread);                                                               \
-    XX(ythread);                                                               \
-    XX(grid_dimx);                                                             \
-    XX(block_dimx);                                                            \
-    XX(grid_dimy);                                                             \
+#define PROCESS_ARRAY(XX) \
+    XX(block_x);          \
+    XX(block_y);          \
+    XX(thread);           \
+    XX(warp);             \
+    XX(calc_thread);      \
+    XX(xthread);          \
+    XX(ythread);          \
+    XX(grid_dimx);        \
+    XX(block_dimx);       \
+    XX(grid_dimy);        \
     XX(block_dimy);
 
 __host__ void show_id2(const unsigned int threads_x,
@@ -141,8 +141,8 @@ __host__ void show_id2(const unsigned int threads_x,
 /**
  * copy gpu data to cpu
  */
-#define XX(array)                                                              \
-    cudaMemcpy(cpu_##array, gpu_##array, ARRAY_SIZE_IN_BYTES,                  \
+#define XX(array)                                             \
+    cudaMemcpy(cpu_##array, gpu_##array, ARRAY_SIZE_IN_BYTES, \
                cudaMemcpyDeviceToHost)
     PROCESS_ARRAY(XX)
 #undef XX
@@ -156,12 +156,13 @@ __host__ void show_id2(const unsigned int threads_x,
 
     for (int y = 0; y < ARRAY_SIZE_Y; ++y) {
         for (int x = 0; x < ARRAY_SIZE_X; ++x) {
-            printf("CT: %2u BKX: %1u BKY: %1u TID: %2u YTID: %2u XTID: %2u "
-                   "GDX: %1u BDX: %1u GDY: %1u BDY: %1u\n",
-                   cpu_calc_thread[y][x], cpu_block_x[y][x], cpu_block_y[y][x],
-                   cpu_thread[y][x], cpu_ythread[y][x], cpu_xthread[y][x],
-                   cpu_grid_dimx[y][x], cpu_block_dimx[y][x],
-                   cpu_grid_dimy[y][x], cpu_block_dimy[y][x]);
+            printf(
+                "CT: %2u BKX: %1u BKY: %1u TID: %2u YTID: %2u XTID: %2u "
+                "GDX: %1u BDX: %1u GDY: %1u BDY: %1u\n",
+                cpu_calc_thread[y][x], cpu_block_x[y][x], cpu_block_y[y][x],
+                cpu_thread[y][x], cpu_ythread[y][x], cpu_xthread[y][x],
+                cpu_grid_dimx[y][x], cpu_block_dimx[y][x], cpu_grid_dimy[y][x],
+                cpu_block_dimy[y][x]);
         }
     }
 }

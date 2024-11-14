@@ -2,7 +2,7 @@
 
 __shared__ unsigned int d_bin_data_shared[256];
 
-#define ATOMIC_ADD_TO_BIN_SHARED(value, shift)                                 \
+#define ATOMIC_ADD_TO_BIN_SHARED(value, shift) \
     atomicAdd(&(d_bin_data_shared[((value) >> (shift)) & 0xFF]), 1)
 
 __global__ void histogram_kernel(const unsigned int *const d_hist_data,
